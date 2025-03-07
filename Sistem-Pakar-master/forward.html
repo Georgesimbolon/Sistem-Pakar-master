@@ -1,87 +1,222 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Mental Health</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Situs untuk mendiagnosa kemungkinan penyakit mental pada diri Anda.">
-    <link rel="shortcut icon" href="assets/img/ai.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#f8f9fa">
+    <head>
+        <title>Mental Health</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Situs untuk mendiagnosa kemungkinan penyakit Tumor Otak pada diri Anda.">
+        <link rel="shortcut icon" href="assets/img/ai.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="theme-color" content="#f8f9fa">
 
-    <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-vue.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-vue.css">
 
-    <script src="assets/js/vue.js"></script>
-    <script src="assets/js/polyfill.min.js"></script>
-    <script src="assets/js/bootstrap-vue.js"></script>
+        <script src="assets/js/vue.js"></script>
+        <script src="assets/js/polyfill.min.js"></script>
+        <script src="assets/js/bootstrap-vue.js"></script>
 
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/sweetalert.min.js"></script>
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-light fixed-top" style="background-color: #f8f9fa;">
-            <a class="navbar-brand" v-on:click="goHome">
-                <img src="assets/img/ai.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
-                Home
-            </a>
-        </nav>
-
-        <div class="container animated fadeIn" style="margin-top: 70px; margin-bottom: 100px" v-if="home">
-            <div class="row mt-3">
-                <div class="col-12 col-lg-12">
-                    <div class="alert alert-info alert-dismissible animated-1s fadeInDown" role="alert" id="intro" v-if='submited'>
-                        <b>Masukkan nama Anda dan klik tombol mulai!</b>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-2 mb-3">
-                <div class="col-12 col-lg-4">
-                    <h3>Halo {{ name }}!</h3>
-                </div>
-            </div>
-
-            <div class="row my-3" v-if='submited'>
-                <div class="col-12 col-lg-4 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" v-model="name" placeholder="Input your name!">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" v-on:click="inputName" type="submit">Mulai</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row my-3 animamted fadeInUp" v-if='mulai'>
-                <div class="col-12 col-lg-12 col-sm-12">
-                    <div class="card">
-
-                        <div class="card-body" v-if='visible[0]'>
-                            <h5 class="card-title animated fadeIn text-left">Pilih Metode yang akan digunakan</h5>
-                            <div class="row animated shake">
-                                <div class="col-6">
-                                    <a href="index.html" class="btn btn-outline-primary btn-block my-1">Forward Chaining</a>
-                                </div>
-                                <div class="col-6">
-                                    <a href="backward.html" class="btn btn-outline-primary btn-block my-1">Backward Chaining</a>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/popper.min.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/sweetalert.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <nav class="navbar navbar-light fixed-top" style="background-color: #f8f9fa;">
+                <a class="navbar-brand" v-on:click="goHome">
+                    <img src="assets/img/ai.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+                    Forward Chaining
+                </a>
+            </nav>
+    
+            <div class="container animated fadeIn" style="margin-top: 70px; margin-bottom: 100px">
+                <div class="row my-3 animamted fadeInUp">
+                    <div class="col-12 col-lg-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body" v-if='visible[0]'>
+                                <h5 class="card-title animated fadeIn text-left">Apakah Anda mengalami rasa takut secara tiba tiba?</h5>
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(0, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(0, 0.5)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(0, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="card-body text-left" v-if='visible[1]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda sering mendengar suara atau melihat sesuatu yang tidak nyata?</h5>
+                                
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(1, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(1, 0.5)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(1, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[2]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda merasa bahwa pikiran atau perasaan Anda dikendalikan oleh kekuatan luar?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(2, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(2, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(2, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[3]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda sering berbicara dengan cara yang tidak teratur atau sulit dipahami oleh orang lain?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(3, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(3, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(3, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[4]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda kehilangan minat atau kesenangan dalam melakukan aktivitas yang sebelumnya disukai?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(4, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(4, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(4, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[5]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda pernah mengalami perasaan bahwa dunia di sekitar Anda tidak nyata atau berbeda dari biasanya?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(5, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(5, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(5, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[6]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda sering mendengar suara atau melihat sesuatu yang tidak nyata?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(6, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(6, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(6, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left" v-if='visible[7]'>
+                                <h5 class="card-title animated bounceIn">Apakah Anda merasa orang lain berusaha menyakiti atau memata-matai Anda tanpa alasan yang jelas?</h5>
+
+                                <div class="row animated shake">
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(7, 1)' class="btn btn-outline-primary btn-block my-1">Ya</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(7, 0.6)' class="btn btn-outline-primary btn-block my-1">Kadang-kadang</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button v-on:click='inputWeight(7, 0)' class="btn btn-outline-primary my-1 btn-block">Tidak</button>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <!-- Row end -->
+
+                <div class="row mt-2" v-if='selesai'>
+                    <div class="col-12">
+                        <div class="alert alert-success animated bounceIn" role="alert">
+                            <h4 class="alert-heading">Berikut diagnosa Anda:</h4>
+                            <p v-if='cfCombine <= 99'>Dari gejala-gejala yang Anda rasakan, sistem mendiagnosa Anda memiliki <b>{{ diagnostic }}</b> terserang penyakit mental dengan persentase <b>{{ cfCombine }}%</b>.</p>
+                            <p v-if='cfCombine > 99'>Dari gejala-gejala yang Anda rasakan, sistem <b>{{ diagnostic }}</b> bahwa Anda terserang Skizofrenia dengan persentase <b>{{ cfCombine }}%</b>.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-info text-justify animated bounceIn delay-1s" role="alert" v-if="cfCombine < 25">
+                            <p>Sistem tidak mendeteksi penyakit yang kamu alami, sepertinya kamu sehat</p>
+                        </div>
+                        <div class="alert alert-warning text-justify animated bounceIn delay-1s" role="alert" v-if='cfCombine >= 25 && cfCombine <= 50'>
+                            <p>Dari gejala-gejala yang anda rasakan, sistem mendiagnosa Anda terkena Anxiety</p>
+                        </div>
+                        <div class="alert alert-warning text-justify animated bounceIn delay-1s" role="alert" v-if='cfCombine >= 51 && cfCombine <= 75'>
+                            <p>Dari gejala-gejala yang anda rasakan, sistem mendiagnosa Anda terkena Panic Disorder</p>
+                        </div>
+                        <div class="alert alert-warning text-justify animated bounceIn delay-1s" role="alert" v-if='cfCombine >= 76 && cfCombine <= 98'>
+                            <p>Dari gejala-gejala yang anda rasakan, sistem mendiagnosa Anda terkena Bipolar</p>
+                        </div>
+                        <div class="alert alert-danger text-justify animated bounceIn delay-1s" role="alert" v-if='cfCombine > 99'>
+                            <p>Dari gejala-gejala yang anda rasakan, sistem mendiagnosa Anda terkena penyakit Skizofrenia</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary animated bounceIn delay-2s" v-on:click='init'>Ulangi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="margin-top: 70px; margin-bottom: 100px" v-if='about'>
+                <div class="row animated fadeIn">
+                    <div class="col-12 offset-lg-1 col-lg-10">
+                        <div class="card">
+                        
                         </div>
                     </div>
                 </div>
             </div>
+
+            <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+                <a class="navbar-brand text-white d-lg-none">Menu</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
         </div>
-    </div>
+    </body>
     <script type="text/javascript" src="assets/js/script.js"></script>
-</body>
 </html>
